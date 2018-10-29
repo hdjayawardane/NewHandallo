@@ -9,12 +9,12 @@ class LoggedOut extends Component{
     render(){
         return(
             <View style={styles.container} > 
-                <Text>LoggedOutScreen</Text>
+                <Text>LoggedOutScreen FuckOff</Text>
             </View>
            
         );
+    
     }
-
 }
 export default LoggedOut;
 
