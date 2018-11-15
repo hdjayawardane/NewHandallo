@@ -65,7 +65,7 @@ class Register extends Component {
 
                 if (res.state === true) {
                     AsyncStorage.setItem('token', res.token);
-                    this.props.navigation.navigate('Login');
+                    this.props.navigation.navigate('Location');
                 } else {
                     alert(res.msg)
                 }

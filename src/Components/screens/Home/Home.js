@@ -1,29 +1,55 @@
 import React, {Component} from "react";
-import { List, ListItem } from 'react-native-elements'
+import { List, ListItem, Card, Button, Icon, Text} from 'react-native-elements'
 import {
     View,
-    Text,
+    
     StyleSheet,
-    Image
+    Image, SafeAreaView, ScrollView, Animated, width
 } from "react-native";
+
+import Shop from '../ScreenComponents/Shop'
 
 class Home extends Component{
     render(){
-        return( <List>
-            <ListItem
-              roundAvatar
-              title='Limited supply! Its like digital gold!'
-              subtitle={
-                <View style={styles.subtitleView}>
-                  <Image source={require('../Images/upalis.jpeg')} style={styles.ratingImage}/>
-                  <Text style={styles.ratingText}>5 months ago</Text>
-                </View>
-              }
-              avatar={require('../Images/upalis.jpeg')}
-            />
-          </List>
+        return( 
+          <SafeAreaView style={{ flex: 1 }}>
+            
+            <ScrollView
+                        scrollEventThrottle={16}
+                        onScroll={Animated.event(
+                            [
+                                { nativeEvent: { contentOffset: { y: this.scrollY } } }
+                            ]
+                        )}
+                    >
+                                <Shop>
 
-        );
+                                </Shop>
+
+                                <Shop>
+
+</Shop>
+
+                                <Shop>
+
+</Shop>
+
+                                <Shop>
+
+</Shop>
+
+                                <Shop>
+
+</Shop>
+
+
+
+          </ScrollView>
+       
+          </SafeAreaView>
+
+        )
+        ;
     }
 
 }
