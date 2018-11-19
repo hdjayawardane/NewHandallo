@@ -17,6 +17,8 @@ import Home from './src/Components/screens/Home/Home';
 import Search from './src/Components/screens/Search/Search';
 import Orders from './src/Components/screens/Orders/Orders';
 import Profile from './src/Components/screens/Profile/Profile';
+import Cart from './src/Components/screens/Cart/Cart'
+
 
 
 
@@ -72,6 +74,16 @@ const AppTabNavigator = createBottomTabNavigator({
       )
     }  
   },
+  Cart: {
+    screen: Cart, 
+    navigationOptions:{
+      tabBarLable:'Cart',
+      tabBarIcon:({tintColor}) =>(
+        <Icon name="ios-cart" size={24} />
+       
+      )
+    }  
+  }
  
  
   

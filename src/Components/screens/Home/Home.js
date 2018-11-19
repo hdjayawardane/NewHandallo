@@ -4,14 +4,14 @@ import {
     Text,
     StyleSheet
 } from "react-native";
+import Shop from '../BaseComponents/Shop/Shop'
+
+
 
 class Home extends Component{
     render(){
         return(
-            <View style={styles.container} > 
-                <Text>HomeScreen</Text>
-            </View>
-           
+            <Shop></Shop>
         );
     }
 

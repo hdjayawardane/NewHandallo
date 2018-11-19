@@ -2,22 +2,22 @@ import React, {Component} from "react";
 import {
     View,
     Text,
-    StyleSheet, Button
+    StyleSheet
 } from "react-native";
 
-class Signup extends Component{
+class ShopDetails extends Component{
     render(){
         return(
             <View style={styles.container} > 
-                <Text>SignupScreen</Text>
-                <Button title="GO" onPress={()=> this.props.navigation.navigate('Home')}/>
+                <Text>ShopDetails</Text>
             </View>
            
         );
     }
 
 }
-export default Signup;
+
+export default ShopDetails;
 
 const styles = StyleSheet.create({
     container:{
