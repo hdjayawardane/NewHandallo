@@ -18,6 +18,7 @@ import Search from './src/Components/screens/Search/Search';
 import Orders from './src/Components/screens/Orders/Orders';
 import Profile from './src/Components/screens/Profile/Profile';
 import Cart from './src/Components/screens/Cart/Cart'
+//import Location from './src/Components/screens/Location /Location'
 
 
 
@@ -136,3 +137,5 @@ export default createSwitchNavigator({
 //     marginBottom: 5,
 //   },
 // });
+
+//export { default as AppContainer } from  './App/AppContainer'

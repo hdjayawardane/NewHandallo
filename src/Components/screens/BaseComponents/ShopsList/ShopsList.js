@@ -1,32 +1,3 @@
-// import React, {Component} from "react";
-// import {
-//     View,
-//     Text,
-//     StyleSheet
-// } from "react-native";
-// import Shop from '../BaseComponents/Shop/Shop'
-
-
-
-// class Home extends Component{
-//     render(){
-//         return(
-//             <Shop></Shop>
-//         );
-//     }
-
-// }
-// export default Home;
-
-// const styles = StyleSheet.create({
-//     container:{
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent:'center'
-        
-//     }
-// });
-
 // import React, { Component, PropTypes } from 'react';
 // import { Container, Content, Card, CardItem, Left,Right, Body, Thumbnail,Spinner, Icon } from 'native-base';
 // //import ProgressiveImage from '../global/progressiveImage';
@@ -39,13 +10,13 @@
 // 	Dimensions,
 // } from 'react-native';
 // //import { Navigation } from 'react-native-navigation';
-// import ProgressBar from '../BaseComponents/ShopsList/ProgressBar';
+// import ProgressBar from '../ShopsList/ProgressBar';
 
 
 // const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 
-// class Home extends Component {
+// class ShopsList extends Component {
 //     constructor(props) {
 // 		super(props);
 // 		const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -53,21 +24,9 @@
 // 			isLoading: true,
 //             dataSource: ds.cloneWithRows(this.props.stories),
 //             showLoader:true
-//         }
-//         this.props.stories=[
-//             {
-//             "topicName":"sometopic",
-//             "title":"sometitle",
-//             "imageurl":"https://ibb.co/gyMrUf",
-//             "story":"storydata",
-//             "moral":"",
-//             "sid":0
-//             },
-            
-//             ]
+// 		}
 		
-//     }
-   
+// 	}
   
     
 //     renderCards(stories) {
@@ -86,7 +45,7 @@
 // 					</Right>
 // 				</CardItem>
 // 				<CardItem cardBody>
-// 					<ProgressiveImage source={{ uri: stories.imageurl }} thumbnail={require("../BaseComponents/ShopsList/login.jpg")} style={{ width: viewportWidth, height: 170 }} thumbnailresizeMode={"cover"} thumbnailkey={"pimg"} />
+// 					<ProgressiveImage source={{ uri: stories.imageurl }} thumbnail={require("../../images/placeholder.png")} style={{ width: viewportWidth, height: 170 }} thumbnailresizeMode={"cover"} thumbnailkey={"pimg"} />
 // 				</CardItem>
 // 				<CardItem content>
 // 					<Text>{stories.story}</Text>
@@ -142,7 +101,7 @@
 //         }
 //     }
 	
-
+// }
 
 
 
@@ -158,78 +117,3 @@
     
 //     ]
     
-
-
-import React, { Component } from 'react';
-import { Image, Dimensions,AsyncStorage,  } from 'react-native';
-import { Container, List, Content, Card, CardItem, ListItem, Text, Button, Icon, Left, Body, Right } from 'native-base';
-
-
-class Home extends Component {
-
-  constructor(props) {
-    super(props);
-  
-      this.state = {
-          data: [],
-      };
-  }
-
-
-onPressShop = () => {
-    this.props.navigation.navigate('ShopDetails');
-
-}
-
-
-
-
-componentDidMount(){
- this.getData()
-}
-
-async getData(){
-   const token = await AsyncStorage.getItem('token')
-    console.log(token)
-    fetch('https://handallo.azurewebsites.net/api/Shop/',{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization':'Bearer '.concat(token)
-      }
-    }).then((response) => response.json())
-      .then(res => {
-    console.log(res)
-      this.setState({
-         data: res
-      });
-  })
-}
-
-  render() {
-    return (
-      <Container>
-      <Content>
-      <List dataArray={this.state.data} renderRow={(item) =>
-      <ListItem>
-        <Card>
-          <CardItem cardBody  style={{width: Dimensions.get('window').width}} onPress={this.onPressShop}>
-            <Image source={{uri: item.url }} style={{height: 200, width: null, flex: 1}}/>
-          </CardItem>
-          <CardItem>
-              <Body>
-                <Text>{item.ShopName}</Text>
-                <Text note>{item.Des_cription}</Text>
-              </Body>
-          </CardItem>
-        </Card>
-        </ListItem>
-      }>
-      </List>
-      </Content>
-    </Container>
-    );
-  }
-}
-
-export default Home;
