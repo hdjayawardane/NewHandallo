@@ -22,21 +22,6 @@ import FoodItem from './src/Components/foodItem/FoodItem';
 //import Location from './src/Components/screens/Location /Location'
 
 
-
-
-
-
-
-
-const AuthStackNavigator = createStackNavigator({
-  Login: Login,
-  Signup: Signup,
-  // Home:Home,
-  // FoodItem:{
-  //   screen:FoodItem
-  // },
-})
-
 const AppTabNavigator = createBottomTabNavigator({
   // tabBarOptions: {
   //   activeTintColor: '#d32f2f',
@@ -101,10 +86,7 @@ const AppTabNavigator = createBottomTabNavigator({
 const AppStackNavigator = createStackNavigator({
   AppTabNavigator: {
     screen: AppTabNavigator
-  },
-  FoodItem:{
-    screen:FoodItem
-  },
+  }
 })
 
 const AppDrawNavigator = createDrawerNavigator({
@@ -115,11 +97,8 @@ const AppDrawNavigator = createDrawerNavigator({
 export default createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
   Auth: AuthStackNavigator,
-  App: AppDrawNavigator,
-  Home:Home,
-
+  App: AppDrawNavigator
 })
-
 
 // type Props = {};
 // export default class App extends Component<Props> {

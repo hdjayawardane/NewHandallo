@@ -157,7 +157,7 @@
 //     },
     
 //     ]
-    
+  
 
 
 import React, { Component } from 'react';
@@ -173,17 +173,25 @@ class Home extends Component {
       this.state = {
           data: [],
       };
+
+      this.onPressShop = this.onPressShop. bind(this);
   }
 
 
-onPressShop = () => {
-    this.props.navigation.navigate('ShopDetails');
+onPressShop = (shopid) => {
+  console.log(shopid);
+    this.props.navigation.navigate('FoodItem',{
+      ShopId : shopid
+    });
 
 }
 
 
 
-
+// onPressShopButton = () => {
+    
+//     this.props.navigation.navigate('ShopDetails');
+// }
 componentDidMount(){
  this.getData()
 }
@@ -213,14 +221,22 @@ async getData(){
       <List dataArray={this.state.data} renderRow={(item) =>
       <ListItem>
         <Card>
-          <CardItem cardBody  style={{width: Dimensions.get('window').width}} onPress={this.onPressShop}>
-            <Image source={{uri: item.url }} style={{height: 200, width: null, flex: 1}}/>
+          <CardItem 
+            button = {true}
+            onPress = { ()=>{this.onPressShop(item.ShopId)}}
+            cardBody  
+            style={{width: Dimensions.get('window').width}}>
+            <Image source={{uri: item.url }} style={{height: 200, width: null , flex: 1}}/>
           </CardItem>
           <CardItem>
               <Body>
                 <Text>{item.ShopName}</Text>
                 <Text note>{item.Des_cription}</Text>
+               
               </Body>
+              <Button> 
+               
+              </Button>
           </CardItem>
         </Card>
         </ListItem>

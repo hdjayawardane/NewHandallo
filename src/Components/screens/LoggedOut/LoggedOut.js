@@ -16,6 +16,7 @@ class LoggedOut extends Component{
     }
 
 }
+
 export default LoggedOut;
 
 const styles = StyleSheet.create({
@@ -26,3 +27,5 @@ const styles = StyleSheet.create({
         
     }
 });
+
+

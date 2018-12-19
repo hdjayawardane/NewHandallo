@@ -9,7 +9,7 @@ class Location extends Component{
     render(){
         return(
             <View style={styles.container} > 
-                <Text>LocationScreen</Text>
+                <Text>ProfileScreen</Text>
             </View>
            
         );
@@ -26,4 +26,3 @@ const styles = StyleSheet.create({
         
     }
 });
-

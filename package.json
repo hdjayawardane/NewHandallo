@@ -7,11 +7,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "haversine": "^1.1.0",
+    "jwt-decode": "^2.2.0",
     "native-base": "^2.8.1",
     "react": "^16.6.1",
     "react-native": "^0.57.5",
     "react-native-elements": "^0.19.1",
+    "react-native-maps": "^0.22.1",
+    "react-native-sectioned-multi-select": "^0.6.3",
+    "react-native-select-multiple": "^1.2.0",
     "react-native-sglistview": "^0.4.5",
+    "react-native-simple-radio-button": "^2.7.3",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^2.18.2"
   },

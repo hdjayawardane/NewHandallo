@@ -29,53 +29,145 @@
 // });
 //sefjisbvlblghbdshbvhdfsbvhdfbvisdfbvidbsvhidsbvhbdshvbdkshbvkdsbvkdsbvkhdsbvhsdbvhsdbvkhbdshv
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
-import { AsyncStorage, SafeAreaView,  StyleSheet, Button  } from 'react-native';
+import { Container, Header, Content, Form, Item, Button , Text, Input, Label } from 'native-base';
+import { AsyncStorage, SafeAreaView,  StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class Signup extends Component {
 
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.state = {
-            fullname: '',
-            username: '',
-            email: '',
-            phoneno: '',
-            password: '' 
-        }
-    }
+        
+      }
+      state={
+        FirstName:'',
+        LastName:'',
+        Email:'',
+        MobileNo:'',
+        Pass_word:'',
+        RepeatPassword:''
+      };
+    
+      setfirstname=(text)=>{
+        this.setState({FirstName:text})
+      }
+      setlastname =(text)=>{
+        this.setState({LastName:text})
+      }
+      setemail =(text)=>{
+        this.setState({Email:text})
+      }
+      setpassword =(text)=>{
+        this.setState({Pass_word:text})
+      }
+      setrepeatpassword =(text)=>{
+        this.setState({RepeatPassword:text})
+      }
+      setmobileno =(text)=>{
+        this.setState({MobileNo:text})
+      }
+    // signUp = () => {
 
+    //    const body = {
+    //         username: this.state.username,
+    //         email: this.state.email,
+    //         password: this.state.password,
+    //         //confirmPassword: this.state.confirmPassword,
+    //         mobileNumber: this.state.mobileNumbe
+    //     }
+    //     console.log(body)
 
-    signUp = () => {
-        fetch('https://handallo.azurewebsites.net/api/Customer/register', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({
+    //     fetch('https://handallo.azurewebsites.net/api/Customer/register', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
              
-                username: this.state.username,
-                email: this.state.email,
-                password: this.state.password,
-                //confirmPassword: this.state.confirmPassword,
-                mobileNumber: this.state.mobileNumber
-            })
-        })
+    //             username: this.state.username,
+    //             email: this.state.email,
+    //             password: this.state.password,
+    //             //confirmPassword: this.state.confirmPassword,
+    //             mobileNumber: this.state.mobileNumber
+    //         })
+            
+    //     })
+                           
+    //         .then((response) => 
+    //         console.log(body),
+    //         consol.log(response)
+    //         //response.json()
+    //         )
+    //         // .then((res) => {
 
-            .then((response) => response.json())
-            .then((res) => {
+    //         //     if (res.state === true) {
+    //         //         AsyncStorage.setItem('token', res.token);
+    //         //         this.props.navigation.navigate('Home');
+    //         //     } else {
+    //         //        // alert(res.msg)
+    //         //         this.props.navigation.navigate('Home');
+    //         //     }
+    //         // })
+    //         // .done();
+    // }
 
-                if (res.state === true) {
-                    AsyncStorage.setItem('token', res.token);
-                    this.props.navigation.navigate('Home');
-                } else {
-                   // alert(res.msg)
-                    this.props.navigation.navigate('Home');
-                }
-            })
-            .done();
-    }
+    signup(FirstName,LastName,Email,MobileNo,Pass_word){
+        const bodyobj = {
+            email:Email,
+            firstName:FirstName,
+            lastName:LastName,
+            mobileNo:MobileNo,
+            pass_word:Pass_word
+        };
+        console.log(bodyobj),
+      //console.log(username)
+      fetch('https://handallo.azurewebsites.net/api/Customer/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      //   body: JSON.stringify({
+      //     email: username,
+      //     pass_word: password,
+      //   }),
+      body: JSON.stringify(bodyobj)
+        
+    })
+    .then((response) => 
+    {
+        if(response.status === 200){
+          this.props.navigation.navigate('Login');
+        }
+        else{
+            alert("login failed")
+        }
+        
+    })
+  
+      }
+   async loginsucess(responsejson){
+       const token = responsejson.token;
+       //console.log(token)
+       try{
+          await AsyncStorage.setItem("token",token);
+       }catch(error){
+           console.log(error)
+       }
+       //const token1 = AsyncStorage.getItem("token");
+       //const keys = await AsyncStorage.getAllKeys()
+       //const values = await AsyncStorage.multiGet(keys)
+       //console.log(token1);
+       this.getData();
+       this.props.navigation.navigate('Home');
+   }
+   async getData(){
+      await AsyncStorage
+    .getItem('token')
+    .then((value) => console.log(value))
+    .done();
+  
+  }
+   
 
     render() {
         return (
@@ -86,7 +178,7 @@ class Signup extends Component {
       <Container>
       <Content>
         <Form>
-          <Item floatingLabel>
+          {/* <Item floatingLabel>
             <Label>UserName</Label>
             <Input onChange={ (username) => this.setState({username})}/>
           </Item>
@@ -114,17 +206,41 @@ class Signup extends Component {
           </Item>
 
 
+ */}
 
 
-
+        <Item floatingLabel>
+              <Label>First Name</Label>
+              <Input onChangeText={this.setfirstname}/> 
+            </Item>
+            <Item floatingLabel>
+              <Label>Last Name</Label>
+              <Input onChangeText={this.setlastname}/> 
+            </Item>
+            <Item floatingLabel>
+              <Label>Email</Label>
+              <Input onChangeText={this.setemail}/> 
+            </Item>
+            <Item floatingLabel>
+              <Label>Mobile Number</Label>
+              <Input onChangeText={this.setmobileno}/> 
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input  onChangeText = {this.setpassword} />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Repeat Passsword</Label>
+              <Input  onChangeText = {this.setrepeatpassword} />
+            </Item>
 
         </Form>
-        <Button
-      onPress={this.signUp}
-      title="Sign Up"
-      color="#841534"
-      accessibilityLabel="Learn more about this purple button"
-       />
+
+
+
+        <Button full onPress={()=>this.signup(this.state.FirstName, this.state.LastName,this.state.Email,this.state.MobileNo,this.state.Pass_word)}>
+          <Text>login</Text>
+          </Button>
         {/* <Button
       onPress={this.ForgotPassword}
       title="Forgot Password?"

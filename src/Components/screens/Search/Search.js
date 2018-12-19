@@ -296,17 +296,34 @@
 import React, {Component} from "react";
 import {
     View,
-    Text,
+    
     StyleSheet, TouchableOpacity
 } from "react-native";
+import {  Button, Text } from 'native-base';
 //import {Card, Button} from 'react-native-elements';
 
 
 
 class Search extends Component{
+
+
+goShopDetails = () =>{
+        this.props.navigation.navigate('Location')
+  }
+
+
+
+
+
+
+
   render(){
     return(
         <View style={styles.container} > 
+            <Button full onPress={()=>this.goShopDetails()}>
+            <Text>login</Text>
+            </Button>
+          
             <Text>Cart</Text>
         </View>
        

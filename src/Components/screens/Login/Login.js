@@ -237,21 +237,32 @@ class Login extends Component {
     username:'',
     password:''
   };
+
+  
+  
+
+
+
   setUsername=(text)=>{
     this.setState({username:text})
   }
-  setPassword =(text)=>{
+  setPassword =(text)=> {
     this.setState({password:text})
+  }
+  newToHandalloButton=() =>{
+        this.props.navigation.navigate('Signup')
   }
 
   login(username,password){
       const bodyobj = {
-          email: username,
-          pass_word: password
+          // email: username,
+          // pass_word: password
+          email: "dulangah2@gmail.com",
+          pass_word: "123456"
       }
       console.log(bodyobj),
     //console.log(username)
-    fetch('https://handallo.azurewebsites.net/api/Customer/Login', {
+    fetch('https://handallo.azurewebsites.net/api/Customer/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -264,6 +275,7 @@ class Login extends Component {
       
   })
   .then((response) => {
+    console.log(response)
       if(response.status === 200){
         response.json().then(
             responsejson => (this.loginsucess(responsejson))
@@ -319,12 +331,18 @@ class Login extends Component {
             </Item>
           </Form> 
 
-          <Button onPress={()=>this.login(this.state.username, this.state.password)}>
+          <Button full onPress={()=>this.login(this.state.username, this.state.password)}>
           <Text>login</Text>
           </Button>
-          {/* <Button onPress={this.ForgotPassword} title="Forgot Password?" color="#841581"/>
-          <Button onPress={this.newToHandalloButton} title="New to Handallo?" color="#841581"/> */}
-        </Content>
+          <Button full onPress={this.ForgotPassword}>
+          <Text>Forgot Password</Text>
+          </Button>
+          <Text>New to Handallo?</Text>
+          <Button  full onPress={this.newToHandalloButton}> 
+        <Text>Sign Up</Text>
+          </Button>
+
+          </Content>
       </Container>
        
     );
